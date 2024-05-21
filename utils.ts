@@ -125,7 +125,7 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
   const index = client.Index(indexName);
   // 3. Create query embedding
   const queryEmbedding = await new FireworksEmbeddings({
-    apiKey: process.env.OPENAI_API_KEY || "",
+    apiKey: process.env.FIREWORKSAI_API_KEY || "",
   }).embedQuery(question);
   // 4. Query Pinecone index
   console.log("Querying Pinecone index...");
