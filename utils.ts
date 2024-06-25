@@ -4,7 +4,7 @@ import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { loadQAStuffChain } from "langchain/chains";
 import { Document } from "langchain/document";
-import fs from "fs";
+// import fs from "fs";
 import { ChatOpenAI } from "@langchain/openai";
 import { indexName, timeout } from "./config";
 import { type Pinecone, type IndexModel } from "@pinecone-database/pinecone";
@@ -69,7 +69,7 @@ export const updatePineconeIndex = async (
   // save to file docs.json and log the number of documents
   console.log(`Saving ${docs.length} documents to docs.json`);
   // save to file docs.json
-  fs.writeFileSync("docs.json", JSON.stringify(docs, null, 2));
+  // fs.writeFileSync("docs.json", JSON.stringify(docs, null, 2));
   // insert data into pinecone index
   let chunksArr: any = [];
   for (const doc of docs) {
@@ -113,10 +113,10 @@ export const updatePineconeIndex = async (
   const results = await Promise.all(promises);
   embeddingsArrays = results.flat();
   // save to file embeddings.json
-  fs.writeFileSync(
-    "embeddings.json",
-    JSON.stringify(embeddingsArrays, null, 2)
-  );
+  // fs.writeFileSync(
+  //   "embeddings.json",
+  //   JSON.stringify(embeddingsArrays, null, 2)
+  // );
 
   const batchSize = 250;
 
@@ -185,10 +185,10 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
       queryResponse.matches.length
     );
     // save the matches to a file
-    fs.writeFileSync(
-      "matches.json",
-      JSON.stringify(queryResponse.matches, null, 2)
-    );
+    // fs.writeFileSync(
+    //   "matches.json",
+    //   JSON.stringify(queryResponse.matches, null, 2)
+    // );
     const model = new ChatOpenAI({
       modelName: "gpt-4o",
       temperature: 0.2,
