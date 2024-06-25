@@ -72,5 +72,3 @@ export default function Home() {
   
   )
 }
-
-export const maxDuration = 300
