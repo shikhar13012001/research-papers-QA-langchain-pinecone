@@ -6,7 +6,8 @@ import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { createPineconeIndex, updatePineconeIndex } from "../../../utils";
 import { indexName } from "../../../config";
 export async function POST() {
-  const loader = new DirectoryLoader("./documents", {
+  const path = process.cwd()+"/documents";
+  const loader = new DirectoryLoader(path, {
     ".txt": (path) => new TextLoader(path),
     ".md": (path) => new TextLoader(path),
     ".pdf": (path) => new PDFLoader(path),
